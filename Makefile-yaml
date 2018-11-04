@@ -1,0 +1,21 @@
+###############################################################################
+# Build openshift yaml files
+###############################################################################
+BUILD_DIR = ./build
+K8S_DIR = ./openshift
+K8S_TMPL := $(notdir $(wildcard $(K8S_DIR)/*.tmpl))
+build_yaml:
+ifneq ("","$(wildcard $(K8S_DIR))")
+	@mkdir -p $(BUILD_DIR)/openshift
+	@cp $(K8S_DIR)/*.yaml $(BUILD_DIR)/openshift
+	$(info $(M) building yaml...)
+	for tmpl in $(K8S_TMPL); do \
+		envsubst < $(K8S_DIR)/$$tmpl > $(BUILD_DIR)/openshift/"$${tmpl/.tmpl/}" ; \
+	done
+endif
+
+buildyaml: build_yaml
+#ifneq ("","$(wildcard $(K8S_DIR))")
+#	$(info $(M) deploy...)
+#	kubectl apply -f $(BUILD_DIR)/openshift
+#endif

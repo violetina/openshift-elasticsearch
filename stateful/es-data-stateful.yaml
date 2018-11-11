@@ -81,7 +81,6 @@ spec:
   - metadata:
       name: es-storage
     spec:
-      storageClassName: gp2
       accessModes: [ ReadWriteOnce ]
       persistentVolumeReclaimPolicy: Retain
       resources:

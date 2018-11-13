@@ -24,7 +24,7 @@ spec:
           privileged: true
       containers:
       - name: es-ingest
-        image: quay.io/pires/docker-elasticsearch-kubernetes:6.4.2
+        image: thematchbox/thematchbox-services:1.2-beta-2-SNAPSHOT
         env:
         - name: NAMESPACE
           valueFrom:

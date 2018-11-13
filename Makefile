@@ -34,6 +34,7 @@ login:	check-env
 	oc login do-prd-okp-m0.do.viaa.be:8443
 	oc new-project "${OC_PROJECT}" || oc project "${OC_PROJECT}"
 	oc adm policy add-scc-to-user privileged -n${OC_PROJECT} -z default
+	oc edit namespace elasticsearch-avo
 	#openshift.io/sa.scc.uid-range: 8983/1
 	#oc edit namespace solr
 	docker login -p "${TOKEN}" -u unused ${oc_registry}
@@ -57,5 +58,5 @@ clean:
 	rm -rf /tmp/${GIT_NAME}
 podshell:
 	oc exec -ti `oc get pods | grep es-ingest | cut -d ' ' -f 1 |grep -v deploy|head -n1`  bash
-all:	clean commit  login deploy  clone  clean
+all:	clean commit buildyaml  login deploy  clone  clean
 

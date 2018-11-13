@@ -33,6 +33,7 @@ checkTools:
 login:	check-env
 	oc login do-prd-okp-m0.do.viaa.be:8443
 	oc new-project "${OC_PROJECT}" || oc project "${OC_PROJECT}"
+	sleep 4 && oc new-project "${OC_PROJECT}" || oc project "${OC_PROJECT}"
 	oc adm policy add-scc-to-user privileged -n${OC_PROJECT} -z default
 	oc edit namespace elasticsearch-avo
 	#openshift.io/sa.scc.uid-range: 8983/1

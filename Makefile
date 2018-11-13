@@ -57,5 +57,5 @@ clean:
 	rm -rf /tmp/${GIT_NAME}
 podshell:
 	oc exec -ti `oc get pods | grep es-ingest | cut -d ' ' -f 1 |grep -v deploy|head -n1`  bash
-all:	clean commit  login build  clone  clean
+all:	clean commit  login deploy  clone  clean
 

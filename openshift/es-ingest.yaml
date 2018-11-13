@@ -35,7 +35,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: CLUSTER_NAME
-          value: myesdb
+          value: avo2-es
         - name: NODE_MASTER
           value: "false"
         - name: NODE_DATA
@@ -43,7 +43,7 @@ spec:
         - name: HTTP_ENABLE
           value: "true"
         - name: ES_JAVA_OPTS
-          value: -Xms512m -Xmx512m
+          value: -Xms1536m -Xmx1536m
         - name: NETWORK_HOST
           value: _site_,_lo_
         - name: PROCESSORS
@@ -67,13 +67,8 @@ spec:
         volumeMounts:
         - name: storage
           mountPath: /data
-        - mountPath: /elasticsearch/config/elasticsearch.yml
-          name: elasticsearch-ingest-conf
-          subPath: elasticsearch.yml
+
       volumes:
           - emptyDir:
               medium: ""
             name: storage
-          - name: elasticsearch-ingest-conf
-            configMap:
-              name: es-config

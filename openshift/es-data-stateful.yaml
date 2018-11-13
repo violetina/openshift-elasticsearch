@@ -40,7 +40,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: CLUSTER_NAME
-          value: myesdb
+          value: avo2-es
         - name: NODE_MASTER
           value: "false"
         - name: NODE_INGEST
@@ -48,9 +48,9 @@ spec:
         - name: HTTP_ENABLE
           value: "true"
         - name: ES_JAVA_OPTS
-          value: -Xms512m -Xmx512m
+          value: -Xms1536m -Xmx1536m
         - name: PROCESSORS
-          value: "1"
+          value: "2"
         ports:
         - containerPort: 9200
           name: http

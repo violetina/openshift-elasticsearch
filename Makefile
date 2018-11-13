@@ -35,7 +35,7 @@ login:	check-env
 	oc new-project "${OC_PROJECT}" || oc project "${OC_PROJECT}"
 	sleep 4 && oc new-project "${OC_PROJECT}" || oc project "${OC_PROJECT}"
 	oc adm policy add-scc-to-user privileged -n${OC_PROJECT} -z default
-	oc edit namespace elasticsearch-avo
+	oc edit namespace ${OC_PROJECT}
 	#openshift.io/sa.scc.uid-range: 8983/1
 	#oc edit namespace solr
 	docker login -p "${TOKEN}" -u unused ${oc_registry}

@@ -1,5 +1,5 @@
 include Makefile-yaml
-PROJECT=elasticsearch-dev
+PROJECT=elasticsearch-${ENV}
 WD=/tmp
 REPO_URI=https://github.com/violetina/openshift-elasticsearch.git
 GIT_NAME=openshift-elasticsearch
@@ -57,5 +57,5 @@ clean:
 	rm -rf /tmp/${GIT_NAME}
 podshell:
 	oc exec -ti `oc get pods | grep es-ingest | cut -d ' ' -f 1 |grep -v deploy|head -n1`  bash
-all:	clean  login  clone deploy clean
+all:	clean commit  login  clone  clean
 

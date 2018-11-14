@@ -29,7 +29,7 @@ spec:
           privileged: true
       containers:
       - name: es-data
-        image: thematchbox/thematchbox-services:1.2-beta-2-SNAPSHOT
+        image: quay.io/pires/docker-elasticsearch-kubernetes:6.4.2
         env:
         - name: NAMESPACE
           valueFrom:
@@ -59,17 +59,18 @@ spec:
         livenessProbe:
           tcpSocket:
             port: transport
-          initialDelaySeconds: 20
+          initialDelaySeconds: 3600
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /_cluster/health
             port: http
-          initialDelaySeconds: 20
+          initialDelaySeconds: 3600
           timeoutSeconds: 5
         volumeMounts:
         - name: es-storage
           mountPath: /data
+
       volumes:
       - name: es-storage
         hostPath:

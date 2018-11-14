@@ -29,7 +29,7 @@ spec:
           privileged: true
       containers:
       - name: es-master
-        image: thematchbox/thematchbox-services:1.2-beta-2-SNAPSHOT
+        image: quay.io/pires/docker-elasticsearch-kubernetes:6.4.2
         env:
         - name: NAMESPACE
           valueFrom:
@@ -66,6 +66,7 @@ spec:
         volumeMounts:
         - name: storage
           mountPath: /data
+
       volumes:
       - name: storage
         hostPath:

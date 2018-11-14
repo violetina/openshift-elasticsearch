@@ -44,6 +44,7 @@ login:	check-env
 clone:
 	cd /tmp && git clone  --single-branch -b ${BRANCH} "${REPO_URI}" 
 deploy:
+	oc create -f build/openshift/matchbox-services-cm.yaml
 	oc  create -f build/openshift/es-discovery-svc.yaml
 	oc  create -f build/openshift/es-svc.yaml 
 	oc  create -f build/openshift/es-master-svc.yaml 
